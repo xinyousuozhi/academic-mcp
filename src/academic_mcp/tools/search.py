@@ -6,7 +6,7 @@ from typing import Any
 from mcp.server import Server
 from mcp.types import Tool, TextContent
 
-from academic_mcp.models import SearchQuery, SearchResult
+from academic_mcp.models import SearchQuery, SearchResult, ProviderCategory
 from academic_mcp.providers.base import BaseProvider
 
 
@@ -42,6 +42,11 @@ def register_search_tools(server: Server, providers: dict[str, BaseProvider]) ->
                             "type": "array",
                             "items": {"type": "string"},
                             "description": f"검색할 기관 목록 (선택). 가능한 값: {list(providers.keys())}",
+                        },
+                        "category": {
+                            "type": "string",
+                            "enum": [c.value for c in ProviderCategory],
+                            "description": "검색할 카테고리 (선택). papers(논문), ancient(고서류), dictionary(사전류)",
                         },
                         "max_results": {
                             "type": "integer",
@@ -104,6 +109,7 @@ async def _handle_search(
             year_from=arguments.get("year_from"),
             year_to=arguments.get("year_to"),
             providers=arguments.get("providers"),
+            category=arguments.get("category"),
             max_results=arguments.get("max_results", 20),
         )
     except Exception as e:
@@ -113,7 +119,9 @@ async def _handle_search(
     target_providers = query.providers or list(providers.keys())
     active_providers = {
         name: p for name, p in providers.items()
-        if name in target_providers and p.is_available()
+        if name in target_providers 
+        and p.is_available()
+        and (not query.category or p.category == query.category)
     }
 
     if not active_providers:

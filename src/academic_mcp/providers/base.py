@@ -3,7 +3,7 @@ from typing import ClassVar
 
 import httpx
 
-from academic_mcp.models import Paper, PaperDetail, SearchQuery, Citation
+from academic_mcp.models import Paper, PaperDetail, SearchQuery, Citation, ProviderCategory
 
 
 class BaseProvider(ABC):
@@ -11,6 +11,7 @@ class BaseProvider(ABC):
 
     name: ClassVar[str]  # 기관 식별자 (예: "kci", "riss")
     display_name: ClassVar[str]  # 표시명 (예: "한국학술지인용색인")
+    category: ClassVar[ProviderCategory]  # 카테고리 (논문, 고서류, 사전 등)
 
     def __init__(self, api_key: str | None = None):
         self.api_key = api_key

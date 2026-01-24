@@ -11,7 +11,7 @@ API 키 발급: https://support.nii.ac.jp/en/cinii/api/developer
 import json
 from typing import ClassVar
 
-from academic_mcp.models import Paper, PaperDetail, SearchQuery, Author
+from academic_mcp.models import Paper, PaperDetail, SearchQuery, Author, ProviderCategory
 from academic_mcp.providers.base import BaseProvider
 
 
@@ -24,6 +24,7 @@ class CiNiiProvider(BaseProvider):
 
     name: ClassVar[str] = "cinii"
     display_name: ClassVar[str] = "CiNii Research (일본)"
+    category: ClassVar[ProviderCategory] = ProviderCategory.PAPERS
 
     BASE_URL = "https://cir.nii.ac.jp/opensearch"
 

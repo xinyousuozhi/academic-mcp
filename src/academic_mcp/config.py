@@ -28,6 +28,10 @@ class Settings(BaseSettings):
     hgis_api_key: str | None = None  # 한국역사정보통합시스템
     history_api_key: str | None = None  # 국사편찬위원회 HGIS
     cinii_api_key: str | None = None  # CiNii Research (일본)
+    gugak_api_key: str | None = None  # 국립국악원 학술연구-고서
+    tripitaka_api_key: str | None = None  # 고려대장경연구소 지식베이스
+    folkency_api_key: str | None = None  # 국립민속박물괄 한국민속대백과사전
+    stdict_api_key: str | None = None  # 국립국어원 표준국어대사전
 
     # 활성화할 Provider (쉼표 구분)
     enabled_providers: str = "kci,losi"

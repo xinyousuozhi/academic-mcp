@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 
-from academic_mcp.models import Author, Paper, PaperDetail, SearchQuery
+from typing import ClassVar
+from academic_mcp.models import Author, Paper, PaperDetail, SearchQuery, ProviderCategory
 from academic_mcp.providers.base import BaseProvider
 
 
@@ -9,6 +10,7 @@ class KoreanTKProvider(BaseProvider):
 
     name = "koreantk"
     display_name = "지식재산 용어사전"
+    category: ClassVar[ProviderCategory] = ProviderCategory.DICTIONARY
     base_url = "http://apis.data.go.kr/1430000/TermDicInfoService"
 
     async def search(self, query: SearchQuery) -> list[Paper]:

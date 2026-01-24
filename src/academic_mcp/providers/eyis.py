@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 
-from academic_mcp.models import Author, Paper, PaperDetail, SearchQuery
+from typing import ClassVar
+from academic_mcp.models import Author, Paper, PaperDetail, SearchQuery, ProviderCategory
 from academic_mcp.providers.base import BaseProvider
 
 
@@ -9,6 +10,7 @@ class EYISProvider(BaseProvider):
 
     name = "eyis"
     display_name = "여성사전시관 인물연구"
+    category: ClassVar[ProviderCategory] = ProviderCategory.DICTIONARY
     base_url = "http://apis.data.go.kr/1383000/eyis/personResearchService/eyis/getPersonResearchList"
 
     async def search(self, query: SearchQuery) -> list[Paper]:

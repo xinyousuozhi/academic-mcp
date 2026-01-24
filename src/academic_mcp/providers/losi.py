@@ -9,8 +9,7 @@
 """
 
 from typing import ClassVar
-
-from academic_mcp.models import Author, Paper, PaperDetail, SearchQuery
+from academic_mcp.models import Author, Paper, PaperDetail, SearchQuery, ProviderCategory
 from academic_mcp.providers.base import BaseProvider
 
 
@@ -19,6 +18,7 @@ class LOSIProvider(BaseProvider):
 
     name: ClassVar[str] = "losi"
     display_name: ClassVar[str] = "국가학술정보(LOSI)"
+    category: ClassVar[ProviderCategory] = ProviderCategory.PAPERS
 
     # API 엔드포인트
     BASE_URL = "http://losi-api.nanet.go.kr"

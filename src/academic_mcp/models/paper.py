@@ -2,6 +2,15 @@ from datetime import date
 from pydantic import BaseModel, Field
 
 
+from enum import Enum
+
+class ProviderCategory(str, Enum):
+    """Provider 카테고리"""
+    PAPERS = "papers"  # 논문
+    ANCIENT = "ancient"  # 고서류
+    DICTIONARY = "dictionary"  # 사전류 및 기타
+
+
 class Author(BaseModel):
     """저자 정보"""
     name: str
@@ -19,11 +28,12 @@ class Paper(BaseModel):
     year: int | None = None
     doi: str | None = None
     url: str | None = Field(default=None, description="원문 링크")
+    abstract: str | None = Field(default=None, description="초록 또는 요약")
 
 
 class PaperDetail(Paper):
     """논문/문헌 상세 정보"""
-    abstract: str | None = None
+    # abstract는 Paper에 포함됨
     keywords: list[str] = Field(default_factory=list)
     volume: str | None = None
     issue: str | None = None
@@ -51,6 +61,7 @@ class SearchQuery(BaseModel):
     year_from: int | None = Field(default=None, description="시작 연도")
     year_to: int | None = Field(default=None, description="종료 연도")
     providers: list[str] | None = Field(default=None, description="검색할 기관 목록 (None이면 전체)")
+    category: ProviderCategory | None = Field(default=None, description="검색할 카테고리 (None이면 전체)")
     max_results: int = Field(default=20, ge=1, le=100, description="최대 결과 수")
 
 
@@ -60,3 +71,6 @@ class SearchResult(BaseModel):
     total_count: int
     papers: list[Paper]
     errors: dict[str, str] = Field(default_factory=dict, description="기관별 에러 메시지")
+
+
+

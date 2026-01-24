@@ -1,4 +1,5 @@
 from .base import BaseProvider
+from .base_kcisa import BaseKCISAProvider, KCISAFieldMapping
 from .cinii import CiNiiProvider
 from .hgis import HGISProvider
 from .kci import KCIProvider
@@ -7,11 +8,23 @@ from .losi import LOSIProvider
 from .nl import NLProvider
 from .oak import OAKProvider
 from .koreantk import KoreanTKProvider
-from .nrich import NRICHProvider
+from .nrich import NRICHProvider, NRICH_ENDPOINTS, NRICHEndpoint
 from .eyis import EYISProvider
+from .gugak import GugakProvider
+from .tripitaka import TripitakaProvider
+from .folkency import FolkencyProvider
+from .stdict import StdictProvider
 
 __all__ = [
+    # Base classes
     "BaseProvider",
+    "BaseKCISAProvider",
+    "KCISAFieldMapping",
+    # NRICH multi-endpoint
+    "NRICHProvider",
+    "NRICH_ENDPOINTS",
+    "NRICHEndpoint",
+    # Individual providers
     "CiNiiProvider",
     "HGISProvider",
     "KCIProvider",
@@ -20,6 +33,9 @@ __all__ = [
     "NLProvider",
     "OAKProvider",
     "KoreanTKProvider",
-    "NRICHProvider",
     "EYISProvider",
+    "GugakProvider",
+    "TripitakaProvider",
+    "FolkencyProvider",
+    "StdictProvider",
 ]

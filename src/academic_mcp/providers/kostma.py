@@ -15,7 +15,7 @@ from urllib.parse import quote
 
 import httpx
 
-from academic_mcp.models import Author, Paper, PaperDetail, SearchQuery
+from academic_mcp.models import Author, Paper, PaperDetail, SearchQuery, ProviderCategory
 from academic_mcp.providers.base import BaseProvider
 
 
@@ -34,6 +34,7 @@ class KOSTMAProvider(BaseProvider):
 
     name: ClassVar[str] = "kostma"
     display_name: ClassVar[str] = "한국학자료센터(KOSTMA)"
+    category: ClassVar[ProviderCategory] = ProviderCategory.ANCIENT
 
     # API 엔드포인트
     BASE_URL = "http://kostma.aks.ac.kr"

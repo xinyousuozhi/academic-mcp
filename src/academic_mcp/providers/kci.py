@@ -13,7 +13,7 @@ import xml.etree.ElementTree as ET
 from typing import ClassVar
 from datetime import datetime
 
-from academic_mcp.models import Paper, PaperDetail, SearchQuery, Author
+from academic_mcp.models import Paper, PaperDetail, SearchQuery, Author, ProviderCategory
 from academic_mcp.providers.base import BaseProvider
 
 
@@ -35,6 +35,7 @@ class KCIProvider(BaseProvider):
 
     name: ClassVar[str] = "kci"
     display_name: ClassVar[str] = "한국학술지인용색인(KCI)"
+    category: ClassVar[ProviderCategory] = ProviderCategory.PAPERS
 
     BASE_URL = "https://open.kci.go.kr/oai/request"
 

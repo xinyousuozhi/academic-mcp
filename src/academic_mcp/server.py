@@ -14,6 +14,10 @@ from academic_mcp.providers import (
     KoreanTKProvider,
     NRICHProvider,
     EYISProvider,
+    GugakProvider,
+    TripitakaProvider,
+    FolkencyProvider,
+    StdictProvider,
 )
 from academic_mcp.providers.base import BaseProvider
 from academic_mcp.tools import register_search_tools
@@ -66,6 +70,22 @@ def create_server() -> tuple[Server, dict[str, BaseProvider]]:
     # EYIS - 여성사전시관 인물연구 (공공데이터포털 키)
     if "eyis" in settings.enabled_provider_list:
         providers["eyis"] = EYISProvider(api_key=settings.data_go_kr_api_key)
+
+    # Gugak - 국립국악원 고서 (전용 키)
+    if "gugak" in settings.enabled_provider_list:
+        providers["gugak"] = GugakProvider(api_key=settings.gugak_api_key)
+
+    # Tripitaka - 고려대장경 (전용 키)
+    if "tripitaka" in settings.enabled_provider_list:
+        providers["tripitaka"] = TripitakaProvider(api_key=settings.tripitaka_api_key)
+
+    # Folkency - 한국민속대백과사전 (전용 키)
+    if "folkency" in settings.enabled_provider_list:
+        providers["folkency"] = FolkencyProvider(api_key=settings.folkency_api_key)
+
+    # Stdict - 표준국어대사전 (전용 키)
+    if "stdict" in settings.enabled_provider_list:
+        providers["stdict"] = StdictProvider(api_key=settings.stdict_api_key)
 
     # Tools 등록
     register_search_tools(server, providers)
