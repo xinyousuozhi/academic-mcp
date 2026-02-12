@@ -30,8 +30,9 @@ class Settings(BaseSettings):
     cinii_api_key: str | None = None  # CiNii Research (일본)
     gugak_api_key: str | None = None  # 국립국악원 학술연구-고서
     tripitaka_api_key: str | None = None  # 고려대장경연구소 지식베이스
-    folkency_api_key: str | None = None  # 국립민속박물괄 한국민속대백과사전
+    folkency_api_key: str | None = None  # 국립민속박물관 한국민속대백과사전
     stdict_api_key: str | None = None  # 국립국어원 표준국어대사전
+    munjip_api_key: str | None = None  # 한국고전번역원 한국문집총간
 
     # 활성화할 Provider (쉼표 구분)
     enabled_providers: str = "kci,losi"
