@@ -15,6 +15,7 @@ from .tripitaka import TripitakaProvider
 from .folkency import FolkencyProvider
 from .stdict import StdictProvider
 from .munjip import MunjipProvider
+from .itkc import ITKCProvider
 
 __all__ = [
     # Base classes
@@ -40,4 +41,5 @@ __all__ = [
     "FolkencyProvider",
     "StdictProvider",
     "MunjipProvider",
+    "ITKCProvider",
 ]

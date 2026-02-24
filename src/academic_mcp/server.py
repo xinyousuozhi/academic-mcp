@@ -19,6 +19,7 @@ from academic_mcp.providers import (
     FolkencyProvider,
     StdictProvider,
     MunjipProvider,
+    ITKCProvider,
 )
 from academic_mcp.providers.base import BaseProvider
 from academic_mcp.tools import register_search_tools
@@ -91,6 +92,10 @@ def create_server() -> tuple[Server, dict[str, BaseProvider]]:
     # Munjip - 한국고전번역원 한국문집총간 (공공데이터포털)
     if "munjip" in settings.enabled_provider_list:
         providers["munjip"] = MunjipProvider(api_key=settings.munjip_api_key)
+
+    # ITKC - 한국고전종합DB OpenAPI (API 키 불필요)
+    if "itkc" in settings.enabled_provider_list:
+        providers["itkc"] = ITKCProvider(api_key=None)
 
     # Tools 등록
     register_search_tools(server, providers)
